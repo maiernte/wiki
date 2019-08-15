@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>Mac备忘录 | 天涯的维基</title>
+    
+    
+        <meta name="keywords" content="Mac">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="指令和任务  隐藏文件夹 Terminal 命令 1234//显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool true//不显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool false 需要重启Finder使设置生效 :  重启Finder：窗口左">
+<meta name="keywords" content="Mac">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac备忘录">
+<meta property="og:url" content="http://maiernte.github.io/wiki/mac-memo.html">
+<meta property="og:site_name" content="天涯的维基">
+<meta property="og:description" content="指令和任务  隐藏文件夹 Terminal 命令 1234//显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool true//不显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool false 需要重启Finder使设置生效 :  重启Finder：窗口左">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://www.mac52ipod.cn/attachment.php?fid=5823">
+<meta property="og:image" content="http://www.mac52ipod.cn/attachment.php?fid=5824">
+<meta property="og:updated_time" content="2019-08-10T06:42:56.343Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac备忘录">
+<meta name="twitter:description" content="指令和任务  隐藏文件夹 Terminal 命令 1234//显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool true//不显示隐藏文件defaults write com.apple.finder AppleShowAllFiles -bool false 需要重启Finder使设置生效 :  重启Finder：窗口左">
+<meta name="twitter:image" content="http://www.mac52ipod.cn/attachment.php?fid=5823">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="天涯的维基" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/wiki/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/wiki/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/wiki/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/wiki/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/wiki/css/style.css">
+    <script src="/wiki/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/wiki/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/wiki/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/wiki/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/wiki/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">天涯的维基</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/wiki/">首页</a>
+                
+                    <a class="main-nav-link" href="/wiki/archives/">归档</a>
+                
+                    <a class="main-nav-link" href="/wiki/categories/">分类</a>
+                
+                    <a class="main-nav-link" href="/wiki/tags/">标签</a>
+                
+                    <a class="main-nav-link" href="/wiki/about/">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/wiki/',
+        CONTENT_URL: '/wiki/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/wiki/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/wiki/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/archives/">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/categories/">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/tags/">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/about/">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            IT
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Mac
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file active"><a href="/wiki/mac-memo.html">Mac备忘录</a></li>  <li class="file"><a href="/wiki/mac-using-tags.html">Mac使用标签</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Tools
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/use-github-in-wiki.html">使用Github维护知识库</a></li>  <li class="file"><a href="/wiki/about-jianguoyu.html">坚果云有关</a></li>  <li class="file"><a href="/wiki/ubuntu-reset-root-pw.html">Ubuntu重设root用户密码</a></li>  <li class="file"><a href="/wiki/Editor-Skills-Summary.html">编辑器工具使用技巧汇总</a></li>  <li class="file"><a href="/wiki/helpfull-shell-command.html">有用的Shell命令</a></li>  <li class="file"><a href="/wiki/config-mysql-access-privileges-on-vps.html">配置服务器端MySQL</a></li>  <li class="file"><a href="/wiki/gitbook_with_typora_gh-pages.html">Gitbook攻略</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Web
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/next-collapse-block.html">Next以及wikitten主题添加内容折叠</a></li>  <li class="file"><a href="/wiki/how-build-my-hexo-blog.html">搭建Hexo博客的流水账</a></li>  <li class="file"><a href="/wiki/how-to-manage-big-hexo-blog.html">如何系统化管理Hexo博客</a></li>  <li class="file"><a href="/wiki/synchron-the-tag-and-categories-btw-pc-hexo.html">同步Hexo文章与Mac上原笔记的分类和标签</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            skill
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/still-using-qiniu.html">还在用七牛?</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            常用文件
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/hexo-blog-alltag-verwalten.html">Hexo日常管理</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            摘录
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            娱乐
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/funny-things-collection.html">搞笑段子</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            片段
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/prominaent-slogen-collection.html">名人语录</a></li>  <li class="file"><a href="/wiki/funny-things-collection.html">缠中说禅</a></li>  <li class="file"><a href="/wiki/funny-sloga-collection.html">零散句子</a></li>  <li class="file"><a href="/wiki/brief-notions-collection.html">简短书摘</a></li>  <li class="file"><a href="/wiki/budahlisisch-poeim-collection.html">佛偈集合</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/lalaland-film.html">爱乐之城——影评</a></li>  <li class="file"><a href="/wiki/lvdeshui-film.html">《驴得水》——影评</a></li>  <li class="file"><a href="/wiki/old-stories-collection.html">典故</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            文档
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/rzf-organisation.html">RZF Organisation</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            读书笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/road-less-traveled-summary.html">《少有人走的路》笔记</a></li>  <li class="file"><a href="/wiki/road-to-asset-freedom.html">财富自由之路-李笑来</a></li>  <li class="file"><a href="/wiki/storic-summary.html">斯多葛主义手册</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            随笔
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/hellow-world.html">Hello World</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-IT/Mac/Mac备忘录" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/wiki/categories/IT/">IT</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/wiki/categories/IT/Mac/">Mac</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/wiki/tags/Mac/">Mac</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/mac-memo.html">
+            <time datetime="2019-07-22T16:47:47.000Z" itemprop="datePublished">2019-07-22</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/maiernte/maiernte.github.io.source/raw/master/source/_posts/IT/Mac/Mac备忘录.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/maiernte/maiernte.github.io.source/edit/master/source/_posts/IT/Mac/Mac备忘录.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/maiernte/maiernte.github.io.source/commits/master/source/_posts/IT/Mac/Mac备忘录.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Mac备忘录
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#指令和任务"><span class="toc-number">1.</span> <span class="toc-text"> 指令和任务</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#隐藏文件夹"><span class="toc-number">1.1.</span> <span class="toc-text"> 隐藏文件夹</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#允许任何来源软件"><span class="toc-number">1.2.</span> <span class="toc-text"> 允许任何来源软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#任务控制"><span class="toc-number">1.3.</span> <span class="toc-text"> 任务控制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#文件管理"><span class="toc-number">2.</span> <span class="toc-text"> 文件管理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#标签的使用"><span class="toc-number">2.1.</span> <span class="toc-text"> 标签的使用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#通用技巧"><span class="toc-number">3.</span> <span class="toc-text"> 通用技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#输入法"><span class="toc-number">3.1.</span> <span class="toc-text"> 输入法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看按键字符"><span class="toc-number">3.1.1.</span> <span class="toc-text"> 查看按键字符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通过automator添加快捷键"><span class="toc-number">3.2.</span> <span class="toc-text"> 通过Automator添加快捷键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#电源管理"><span class="toc-number">3.3.</span> <span class="toc-text"> 电源管理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#升级到mojave后鼠标发飘"><span class="toc-number">3.4.</span> <span class="toc-text"> 升级到Mojave后鼠标发飘</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#网络资源"><span class="toc-number">4.</span> <span class="toc-text"> 网络资源</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#应用软件"><span class="toc-number">4.1.</span> <span class="toc-text"> 应用软件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在线文档"><span class="toc-number">4.2.</span> <span class="toc-text"> 在线文档</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#升级ssd固态硬盘"><span class="toc-number">4.2.1.</span> <span class="toc-text"> 升级SSD固态硬盘</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="指令和任务"><a class="markdownIt-Anchor" href="#指令和任务"></a> 指令和任务</h1>
+<h2 id="隐藏文件夹"><a class="markdownIt-Anchor" href="#隐藏文件夹"></a> 隐藏文件夹</h2>
+<p>Terminal 命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//显示隐藏文件</span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">true</span></span><br><span class="line">//不显示隐藏文件</span><br><span class="line">defaults write com.apple.finder AppleShowAllFiles -bool <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+<p>需要重启Finder使设置生效 :</p>
+<blockquote>
+<p>重启Finder：窗口左上角的苹果标志–&gt;强制退出–&gt;Finder–&gt;重新启动</p>
+</blockquote>
+<h2 id="允许任何来源软件"><a class="markdownIt-Anchor" href="#允许任何来源软件"></a> 允许任何来源软件</h2>
+<p>系统默认在 <strong>安全与隐私</strong> 里只显示 “App Store” 和 “App Store 和被认可的开发者”，没有 “任何来源”。开启的话需要在终端输入</p>
+<p><code>sudo spctl --master-disable</code></p>
+<p>并输入开机密码。</p>
+<h2 id="任务控制"><a class="markdownIt-Anchor" href="#任务控制"></a> 任务控制</h2>
+<ul>
+<li>
+<p>将任务放在后台运行：<code>command + &amp;</code></p>
+</li>
+<li>
+<p>将任务丢到后台暂停：<code>ctrl-z</code></p>
+</li>
+<li>
+<p>查看后台所有任务状态：<code>jobs -l</code>  (会列出 1、2、3序列号)</p>
+</li>
+<li>
+<p>将后台的任务拿到前台处理：<code>fg %jobnumber</code>  (指序列号，而不是任务id)</p>
+</li>
+<li>
+<p>将后台的任务变成运行中：<code>bg %jobnumber</code></p>
+</li>
+<li>
+<p>管理后台当中的任务：<code>kill -signal %jobnumber</code></p>
+</li>
+</ul>
+<h1 id="文件管理"><a class="markdownIt-Anchor" href="#文件管理"></a> 文件管理</h1>
+<h2 id="标签的使用"><a class="markdownIt-Anchor" href="#标签的使用"></a> 标签的使用</h2>
+<p>参看 <a href="mac-using-tags.html">mac 标签的使用</a></p>
+<h1 id="通用技巧"><a class="markdownIt-Anchor" href="#通用技巧"></a> 通用技巧</h1>
+<h2 id="输入法"><a class="markdownIt-Anchor" href="#输入法"></a> 输入法</h2>
+<h3 id="查看按键字符"><a class="markdownIt-Anchor" href="#查看按键字符"></a> 查看按键字符</h3>
+<ol>
+<li>偏好设置 → 键盘 → 输入法，窗口右面会显示键盘⌨️图案，按住shift⇧键或者option⌥，会显示在不同功能键下面的字符。</li>
+</ol>
+<h2 id="通过automator添加快捷键"><a class="markdownIt-Anchor" href="#通过automator添加快捷键"></a> 通过Automator添加快捷键</h2>
+<p><a href="https://zhidao.baidu.com/question/1514898183998822540.html" target="_blank" rel="noopener">文章来源</a></p>
+<ol>
+<li>一次打开 <em><strong>Finder —&gt; 应用程序 —&gt; automator</strong></em></li>
+<li>选取 <em><strong>服务</strong></em></li>
+<li>从左边的双栏选取 <em><strong>使用工具—&gt;运行AppleScript</strong></em>， 并双击运行。</li>
+<li>出现文本框后选定（右栏最上边）<em><strong>没有输入</strong></em></li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">on run &#123;input, parameters&#125;</span><br><span class="line">    (* Your script goes here *)</span><br><span class="line">    tell application &quot;Safari&quot;</span><br><span class="line">        reopen</span><br><span class="line">        activate</span><br><span class="line">        end tell</span><br><span class="line">end run</span><br></pre></td></tr></table></figure>
+<ol start="5">
+<li>⌘+S 保存，命名为 <em>Open Safari</em>。关闭automator</li>
+<li>转到 <em><strong>系统偏好设置—&gt;键盘—&gt;快捷键—&gt;服务—&gt;通用—&gt;open safari</strong></em> ，然后设定快捷键就好了。</li>
+</ol>
+<h2 id="电源管理"><a class="markdownIt-Anchor" href="#电源管理"></a> 电源管理</h2>
+<p><code>pmset</code>是<strong>macOS</strong>下用来操作、电源管理的工具，可设定休眠模式、时间和唤醒时间或显示电源信息，不过因为它是一个命令列的指令，因此得透过终端机察看或修改设定。当你开启「终端机」输入p<code>mset -g</code> 会看到具体设置。</p>
+<ul>
+<li><code>Standbydelay 28800</code> ：将系统储存于內存中休眠，会消耗一些电力。</li>
+<li><code>Autopowerofdelay 28800</code> ：  把系统写入SSD硬盘中，将內存暂存关闭，依照这篇文章的说法，两者延迟时间28800秒（约八小时）会让电脑多维持內存八小时左右的电力。</li>
+<li><code>tcpkeepalive</code> ：设定睡眠后是否还保持网络连接， 以便可以透过TCP唤醒系统</li>
+<li><code>hibernatemode</code> ：睡眠模式。数字越小，耗电越高。可以设置为 25</li>
+</ul>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo pmset -b autopoweroffdelay 300 <span class="comment"># 将睡眠时间缩短为300秒（五分钟）</span></span><br><span class="line">sudo pmset -b standbydelay 300 <span class="comment"># 然后将系统储存到SSD硬盘</span></span><br><span class="line">sudo pmset -b tcpkeepalive 0 <span class="comment"># 将透过TCP唤醒系统的功能关闭</span></span><br><span class="line">sudo pmset -a hibernatemode 25</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>中间的参数-b是使用电池下的参数，-c为外接电源下的参数设定， -a 为所有情况下的设定。</p>
+</blockquote>
+<h2 id="升级到mojave后鼠标发飘"><a class="markdownIt-Anchor" href="#升级到mojave后鼠标发飘"></a> 升级到Mojave后鼠标发飘</h2>
+<p>前往***偏好设置–&gt;网络–&gt;设定服务顺序(左下角齿轮)***，然后将***蓝牙PAN***拖到最上面。</p>
+<h1 id="网络资源"><a class="markdownIt-Anchor" href="#网络资源"></a> 网络资源</h1>
+<h2 id="应用软件"><a class="markdownIt-Anchor" href="#应用软件"></a> 应用软件</h2>
+<ol>
+<li>大量破解资源分享的网站 <a href="https://www.macenjoy.co/" target="_blank" rel="noopener">MacEnjoy</a></li>
+</ol>
+<h2 id="在线文档"><a class="markdownIt-Anchor" href="#在线文档"></a> 在线文档</h2>
+<p><a href="https://support.apple.com/kb/SP665?locale=zh_CN&amp;viewlocale=zh_CN" target="_blank" rel="noopener">iMac 2012 规格</a></p>
+<h3 id="升级ssd固态硬盘"><a class="markdownIt-Anchor" href="#升级ssd固态硬盘"></a> 升级SSD固态硬盘</h3>
+<p><a href="https://zh.ifixit.com/Teardown/iMac+Intel+21.5-Inch+EMC+2544+Teardown/11936" target="_blank" rel="noopener">iMac 2012 21.5吋 拆卸指南</a></p>
+<p><a href="https://luolei.org/imac-5k-external-usb-ssd-update/" target="_blank" rel="noopener">Mac升级外挂SSD硬盘</a></p>
+<p><a href="https://support.apple.com/zh-cn/HT202796" target="_blank" rel="noopener">如何选择另一个启动磁盘</a> <font color="gray">🖊 <i>官方说明</i></font></p>
+<p><a href="http://www.mac52ipod.cn/post/apple-mac-macbook-pro-change-ssd-hardisk-tutorial.php" target="_blank" rel="noopener">更换SSD固态硬盘攻略</a></p>
+<ol>
+<li>
+<p>固态硬盘通过USB 3连接到电脑，并格式化成 <strong>Mac OS 扩展</strong> 格式。</p>
+<p><img src="http://www.mac52ipod.cn/attachment.php?fid=5823" alt></p>
+</li>
+<li>
+<p>用 Carbon Copy Cloner（<a href="https://bombich.com/" target="_blank" rel="noopener">官网下载</a>）把原硬盘的数据镜像到 SSD。完成后要制作恢复分区「Recovery HD」<a href="https://www.macenjoy.co/blog/carbon-copy-cloner-for-mac-v5-1-9" target="_blank" rel="noopener">破解版下载地址</a></p>
+<p>或者 <a href="https://www.shirt-pocket.com/SuperDuper/SuperDuperDescription.html" target="_blank" rel="noopener">SuperDuper</a> <font color="gray">🖊 <i>免费版可以全盘备份，而不支持增量操作。</i></font></p>
+<p><img src="http://www.mac52ipod.cn/attachment.php?fid=5824" alt></p>
+</li>
+<li>
+<p>重启，听到 「当 」一声后按住 <code>Option</code> 键(windows 键盘上的 Alt)。然后选择SSD作为启动硬盘。</p>
+</li>
+<li>
+<p>开机后用 <strong>Trim Enabler</strong>（<a href="http://www.cindori.org/software/trimenabler/" target="_blank" rel="noopener">官网下载</a>）开启 <strong>Trim</strong> 读写加速。👍</p>
+</li>
+</ol>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/mac-using-tags.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Mac使用标签
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/lalaland-film.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">爱乐之城——影评</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+        <section id="comments"> 
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+ </section>
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            鎏金天涯 &copy; 2019
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> 万法唯心 | 相随心转
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://maiernte.github.io/wiki/mac-memo.html';
+        
+        this.page.identifier = 'IT/Mac/Mac备忘录';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'tian-ya-de-zhi-fu' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+    
+        <script src="/wiki/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/wiki/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/wiki/js/main.js"></script>
+
+    </div>
+</body>
+</html>

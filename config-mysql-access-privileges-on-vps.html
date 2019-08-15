@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>配置服务器端MySQL | 天涯的维基</title>
+    
+    
+        <meta name="keywords" content="工具">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="文章  问题一：端口状态  查看 3306 端口状态 sudo netstat -an | grep 3306   tcp  0 0 127.0.0.1:3306 0.0.0.0:*  3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。 打开MySQL的配置文件：sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf">
+<meta name="keywords" content="工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="配置服务器端MySQL">
+<meta property="og:url" content="http://maiernte.github.io/wiki/config-mysql-access-privileges-on-vps.html">
+<meta property="og:site_name" content="天涯的维基">
+<meta property="og:description" content="文章  问题一：端口状态  查看 3306 端口状态 sudo netstat -an | grep 3306   tcp  0 0 127.0.0.1:3306 0.0.0.0:*  3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。 打开MySQL的配置文件：sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-14T13:10:45.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="配置服务器端MySQL">
+<meta name="twitter:description" content="文章  问题一：端口状态  查看 3306 端口状态 sudo netstat -an | grep 3306   tcp  0 0 127.0.0.1:3306 0.0.0.0:*  3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。 打开MySQL的配置文件：sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="天涯的维基" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/wiki/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/wiki/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/wiki/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/wiki/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/wiki/css/style.css">
+    <script src="/wiki/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/wiki/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/wiki/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/wiki/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/wiki/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">天涯的维基</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/wiki/">首页</a>
+                
+                    <a class="main-nav-link" href="/wiki/archives/">归档</a>
+                
+                    <a class="main-nav-link" href="/wiki/categories/">分类</a>
+                
+                    <a class="main-nav-link" href="/wiki/tags/">标签</a>
+                
+                    <a class="main-nav-link" href="/wiki/about/">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/wiki/',
+        CONTENT_URL: '/wiki/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/wiki/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/wiki/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/archives/">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/categories/">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/tags/">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/about/">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            IT
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mac
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/mac-memo.html">Mac备忘录</a></li>  <li class="file"><a href="/wiki/mac-using-tags.html">Mac使用标签</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Tools
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/use-github-in-wiki.html">使用Github维护知识库</a></li>  <li class="file"><a href="/wiki/about-jianguoyu.html">坚果云有关</a></li>  <li class="file"><a href="/wiki/ubuntu-reset-root-pw.html">Ubuntu重设root用户密码</a></li>  <li class="file"><a href="/wiki/Editor-Skills-Summary.html">编辑器工具使用技巧汇总</a></li>  <li class="file"><a href="/wiki/helpfull-shell-command.html">有用的Shell命令</a></li>  <li class="file active"><a href="/wiki/config-mysql-access-privileges-on-vps.html">配置服务器端MySQL</a></li>  <li class="file"><a href="/wiki/gitbook_with_typora_gh-pages.html">Gitbook攻略</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Web
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/next-collapse-block.html">Next以及wikitten主题添加内容折叠</a></li>  <li class="file"><a href="/wiki/how-build-my-hexo-blog.html">搭建Hexo博客的流水账</a></li>  <li class="file"><a href="/wiki/how-to-manage-big-hexo-blog.html">如何系统化管理Hexo博客</a></li>  <li class="file"><a href="/wiki/synchron-the-tag-and-categories-btw-pc-hexo.html">同步Hexo文章与Mac上原笔记的分类和标签</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            skill
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/still-using-qiniu.html">还在用七牛?</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            常用文件
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/hexo-blog-alltag-verwalten.html">Hexo日常管理</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            摘录
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            娱乐
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/funny-things-collection.html">搞笑段子</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            片段
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/prominaent-slogen-collection.html">名人语录</a></li>  <li class="file"><a href="/wiki/funny-things-collection.html">缠中说禅</a></li>  <li class="file"><a href="/wiki/funny-sloga-collection.html">零散句子</a></li>  <li class="file"><a href="/wiki/brief-notions-collection.html">简短书摘</a></li>  <li class="file"><a href="/wiki/budahlisisch-poeim-collection.html">佛偈集合</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/lalaland-film.html">爱乐之城——影评</a></li>  <li class="file"><a href="/wiki/lvdeshui-film.html">《驴得水》——影评</a></li>  <li class="file"><a href="/wiki/old-stories-collection.html">典故</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            文档
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/rzf-organisation.html">RZF Organisation</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            读书笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/road-less-traveled-summary.html">《少有人走的路》笔记</a></li>  <li class="file"><a href="/wiki/road-to-asset-freedom.html">财富自由之路-李笑来</a></li>  <li class="file"><a href="/wiki/storic-summary.html">斯多葛主义手册</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            随笔
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/hellow-world.html">Hello World</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-IT/Tools/配置服务器端MySQL" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/wiki/categories/IT/">IT</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/wiki/categories/IT/Tools/">Tools</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/wiki/tags/工具/">工具</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/config-mysql-access-privileges-on-vps.html">
+            <time datetime="2019-08-06T15:26:28.000Z" itemprop="datePublished">2019-08-06</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/maiernte/maiernte.github.io.source/raw/master/source/_posts/IT/Tools/配置服务器端MySQL.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/maiernte/maiernte.github.io.source/edit/master/source/_posts/IT/Tools/配置服务器端MySQL.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/maiernte/maiernte.github.io.source/commits/master/source/_posts/IT/Tools/配置服务器端MySQL.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            配置服务器端MySQL
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-6"><a class="toc-link" href="#问题一端口状态"><span class="toc-number">1.</span> <span class="toc-text"> 问题一：端口状态</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#问题二用户权限"><span class="toc-number">2.</span> <span class="toc-text"> 问题二：用户权限</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#安装-phpmyadmin"><span class="toc-number">3.</span> <span class="toc-text"> 安装 phpMyAdmin</span></a></li></ol>
+                </div>
+            
+        
+        
+            <p><a href="https://blog.csdn.net/bird3014/article/details/78481104" target="_blank" rel="noopener">文章</a></p>
+<h6 id="问题一端口状态"><a class="markdownIt-Anchor" href="#问题一端口状态"></a> 问题一：端口状态</h6>
+<ol>
+<li>查看 3306 端口状态 <code>sudo netstat -an | grep 3306</code></li>
+</ol>
+<blockquote>
+<p>tcp  0 0 127.0.0.1:3306 0.0.0.0:*</p>
+</blockquote>
+<p>3306端口是默认绑定在本地IP 127.0.0.1上的，所以外网无法访问该主机的3306端口。<br>
+打开MySQL的配置文件：<code>sudo vim /etc/mysql/mysql.conf.d/mysqld.cnf</code></p>
+<ol start="2">
+<li>找到如下内容的一行并注释掉：</li>
+</ol>
+<blockquote>
+<p>bind-address          = 127.0.0.1</p>
+</blockquote>
+<ol start="3">
+<li>重启MySQL服务</li>
+</ol>
+<blockquote>
+<p>sudo systemctl restart mysql</p>
+</blockquote>
+<p>然后使用如下命令查看端口绑定状态</p>
+<blockquote>
+<p><code>sudo netstat -an | grep 3306</code></p>
+</blockquote>
+<hr>
+<h6 id="问题二用户权限"><a class="markdownIt-Anchor" href="#问题二用户权限"></a> 问题二：用户权限</h6>
+<p>查看用户权限</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo mysql -uroot -p[你的密码]</span><br><span class="line">use mysql</span><br><span class="line">select user,host from user</span><br></pre></td></tr></table></figure>
+<p>当显示如下，表示用户root只允许内网访问</p>
+<blockquote>
+<p>root  localhost</p>
+</blockquote>
+<p>给用户授权</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to &apos;root&apos;@&apos;[允许的ip]&apos; identified by &apos;[密码]&apos; with grant option;</span><br><span class="line">flush privileges;</span><br></pre></td></tr></table></figure>
+<p>其中*<code>[允许的ip]</code><em>如果设置为</em>*%**的话则表示所有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">ip</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">p</span></span></span></span>都可以访问，*<code>[密码]</code>*表示外网访问的密码是什么。比如我设置成所有<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>i</mi><mi>p</mi></mrow><annotation encoding="application/x-tex">ip</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.85396em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">i</span><span class="mord mathdefault">p</span></span></span></span>都可访问，密码是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi><mi>o</mi><mi>o</mi><mi>t</mi></mrow><annotation encoding="application/x-tex">root</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span><span class="mord mathdefault">o</span><span class="mord mathdefault">o</span><span class="mord mathdefault">t</span></span></span></span>，则命令如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">grant all privileges on *.* to &apos;root&apos;@&apos;%&apos; identified by &apos;root&apos; with grant option;</span><br><span class="line">flush privileges;</span><br><span class="line">select user,host from user;</span><br></pre></td></tr></table></figure>
+<p>重新查看，会显示</p>
+<blockquote>
+<p>root %</p>
+<p>root localhost</p>
+</blockquote>
+<h6 id="安装-phpmyadmin"><a class="markdownIt-Anchor" href="#安装-phpmyadmin"></a> 安装 phpMyAdmin</h6>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/gitbook_with_typora_gh-pages.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    Gitbook攻略
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/storic-summary.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">斯多葛主义手册</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+        <section id="comments"> 
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+ </section>
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            鎏金天涯 &copy; 2019
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> 万法唯心 | 相随心转
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://maiernte.github.io/wiki/config-mysql-access-privileges-on-vps.html';
+        
+        this.page.identifier = 'IT/Tools/配置服务器端MySQL';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'tian-ya-de-zhi-fu' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+    
+        <script src="/wiki/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/wiki/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/wiki/js/main.js"></script>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>使用Github维护知识库 | 天涯的维基</title>
+    
+    
+        <meta name="keywords" content="工具">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="部署以及更新   初建：将文件夹设置为仓库。只是第一次需要，以后就基本不用。 git init   更新：更新所有的文件。 git add .   描述：更新描述(optional 不是必须的) git commit -m &amp;quot;my command...&amp;quot;   推送：上传到云仓库 git push -u origin master">
+<meta name="keywords" content="工具">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用Github维护知识库">
+<meta property="og:url" content="http://maiernte.github.io/wiki/use-github-in-wiki.html">
+<meta property="og:site_name" content="天涯的维基">
+<meta property="og:description" content="部署以及更新   初建：将文件夹设置为仓库。只是第一次需要，以后就基本不用。 git init   更新：更新所有的文件。 git add .   描述：更新描述(optional 不是必须的) git commit -m &amp;quot;my command...&amp;quot;   推送：上传到云仓库 git push -u origin master">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-08-15T09:40:53.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用Github维护知识库">
+<meta name="twitter:description" content="部署以及更新   初建：将文件夹设置为仓库。只是第一次需要，以后就基本不用。 git init   更新：更新所有的文件。 git add .   描述：更新描述(optional 不是必须的) git commit -m &amp;quot;my command...&amp;quot;   推送：上传到云仓库 git push -u origin master">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="天涯的维基" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/wiki/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/wiki/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/wiki/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/wiki/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/wiki/css/style.css">
+    <script src="/wiki/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/wiki/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/wiki/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/wiki/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/wiki/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">天涯的维基</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/wiki/">首页</a>
+                
+                    <a class="main-nav-link" href="/wiki/archives/">归档</a>
+                
+                    <a class="main-nav-link" href="/wiki/categories/">分类</a>
+                
+                    <a class="main-nav-link" href="/wiki/tags/">标签</a>
+                
+                    <a class="main-nav-link" href="/wiki/about/">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/wiki/',
+        CONTENT_URL: '/wiki/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/wiki/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/wiki/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/archives/">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/categories/">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/tags/">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/about/">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            IT
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mac
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/mac-memo.html">Mac备忘录</a></li>  <li class="file"><a href="/wiki/mac-using-tags.html">Mac使用标签</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Tools
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file active"><a href="/wiki/use-github-in-wiki.html">使用Github维护知识库</a></li>  <li class="file"><a href="/wiki/about-jianguoyu.html">坚果云有关</a></li>  <li class="file"><a href="/wiki/ubuntu-reset-root-pw.html">Ubuntu重设root用户密码</a></li>  <li class="file"><a href="/wiki/Editor-Skills-Summary.html">编辑器工具使用技巧汇总</a></li>  <li class="file"><a href="/wiki/helpfull-shell-command.html">有用的Shell命令</a></li>  <li class="file"><a href="/wiki/config-mysql-access-privileges-on-vps.html">配置服务器端MySQL</a></li>  <li class="file"><a href="/wiki/gitbook_with_typora_gh-pages.html">Gitbook攻略</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Web
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/next-collapse-block.html">Next以及wikitten主题添加内容折叠</a></li>  <li class="file"><a href="/wiki/how-build-my-hexo-blog.html">搭建Hexo博客的流水账</a></li>  <li class="file"><a href="/wiki/how-to-manage-big-hexo-blog.html">如何系统化管理Hexo博客</a></li>  <li class="file"><a href="/wiki/synchron-the-tag-and-categories-btw-pc-hexo.html">同步Hexo文章与Mac上原笔记的分类和标签</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            skill
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/still-using-qiniu.html">还在用七牛?</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            常用文件
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/hexo-blog-alltag-verwalten.html">Hexo日常管理</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            摘录
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            娱乐
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/funny-things-collection.html">搞笑段子</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            片段
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/prominaent-slogen-collection.html">名人语录</a></li>  <li class="file"><a href="/wiki/funny-things-collection.html">缠中说禅</a></li>  <li class="file"><a href="/wiki/funny-sloga-collection.html">零散句子</a></li>  <li class="file"><a href="/wiki/brief-notions-collection.html">简短书摘</a></li>  <li class="file"><a href="/wiki/budahlisisch-poeim-collection.html">佛偈集合</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/lalaland-film.html">爱乐之城——影评</a></li>  <li class="file"><a href="/wiki/lvdeshui-film.html">《驴得水》——影评</a></li>  <li class="file"><a href="/wiki/old-stories-collection.html">典故</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            文档
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/rzf-organisation.html">RZF Organisation</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            读书笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/road-less-traveled-summary.html">《少有人走的路》笔记</a></li>  <li class="file"><a href="/wiki/road-to-asset-freedom.html">财富自由之路-李笑来</a></li>  <li class="file"><a href="/wiki/storic-summary.html">斯多葛主义手册</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            随笔
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/hellow-world.html">Hello World</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-IT/Tools/使用Github维护知识库" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/wiki/categories/IT/">IT</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/wiki/categories/IT/Tools/">Tools</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/wiki/tags/工具/">工具</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/use-github-in-wiki.html">
+            <time datetime="2019-07-24T21:02:14.000Z" itemprop="datePublished">2019-07-24</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/maiernte/maiernte.github.io.source/raw/master/source/_posts/IT/Tools/使用Github维护知识库.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/maiernte/maiernte.github.io.source/edit/master/source/_posts/IT/Tools/使用Github维护知识库.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/maiernte/maiernte.github.io.source/commits/master/source/_posts/IT/Tools/使用Github维护知识库.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            使用Github维护知识库
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#部署以及更新"><span class="toc-number">1.</span> <span class="toc-text"> 部署以及更新</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#详细指令"><span class="toc-number">1.1.</span> <span class="toc-text"> 详细指令</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#设置git身份信息"><span class="toc-number">2.</span> <span class="toc-text"> 设置git身份信息</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#密码和凭证"><span class="toc-number">3.</span> <span class="toc-text"> 密码和凭证</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#保存-github-用户名和密码"><span class="toc-number">3.1.</span> <span class="toc-text"> 保存 Github 用户名和密码</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#ssh-key-凭证"><span class="toc-number">3.2.</span> <span class="toc-text"> SSH Key 凭证</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#删除仓库"><span class="toc-number">4.</span> <span class="toc-text"> 删除仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#恢复所有修改"><span class="toc-number">5.</span> <span class="toc-text"> 恢复所有修改</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#清除历史记录"><span class="toc-number">5.1.</span> <span class="toc-text"> 清除历史记录</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#私人仓库"><span class="toc-number">6.</span> <span class="toc-text"> 私人仓库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文摘资源"><span class="toc-number"></span> <span class="toc-text"> 文摘资源</span></a>
+                </div>
+            
+        
+        
+            <h3 id="部署以及更新"><a class="markdownIt-Anchor" href="#部署以及更新"></a> 部署以及更新</h3>
+<ul>
+<li>
+<p><strong>初建</strong>：将文件夹设置为仓库。只是第一次需要，以后就基本不用。<br>
+<code>git init</code></p>
+</li>
+<li>
+<p><strong>更新</strong>：更新所有的文件。<br>
+<code>git add .</code></p>
+</li>
+<li>
+<p><strong>描述</strong>：更新描述(optional 不是必须的)<br>
+<code>git commit -m &quot;my command...&quot;</code></p>
+</li>
+<li>
+<p><strong>推送</strong>：上传到云仓库<br>
+<code>git push -u origin master</code></p>
+</li>
+</ul>
+<a id="more"></a>
+<h4 id="详细指令"><a class="markdownIt-Anchor" href="#详细指令"></a> 详细指令</h4>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git remote add origin https://github.com/maiernte/NewAngular.git</span><br><span class="line"></span><br><span class="line">git push -u origin master</span><br><span class="line"></span><br><span class="line"><span class="comment"># For the next commit</span></span><br><span class="line">$ git add .   <span class="comment"># add to index only files created/modified and not those deleted</span></span><br><span class="line">$ git add -u  <span class="comment"># add to index only files deleted/modified and not those created</span></span><br><span class="line">$ git add -A  <span class="comment"># do both operation at once, add to index all files</span></span><br></pre></td></tr></table></figure>
+<p>下载及更新</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下载整个项目</span></span><br><span class="line">git <span class="built_in">clone</span> XXXXX</span><br><span class="line"><span class="comment">#从服务器更新</span></span><br><span class="line">git pull [xxxxxx]</span><br><span class="line"><span class="comment">#Help</span></span><br><span class="line">git hepl VERB</span><br><span class="line">git VERB -h</span><br></pre></td></tr></table></figure>
+<p>克隆指定 Branch， 因为有时候 master 和 gh-pages 上存放的是不同的文档。</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> https://github.com/maiernte/gitbook_python_finance.git --branch master new_fold</span><br></pre></td></tr></table></figure>
+<p>设置忽略文件夹以及文件</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">touch .gitignore</span><br><span class="line">vim .gitignore</span><br></pre></td></tr></table></figure>
+<p>并添加类似的行</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># See https://help.github.com/ignore-files/ for more about ignoring files.</span><br><span class="line"># dependencies</span><br><span class="line">/node_modules</span><br><span class="line"></span><br><span class="line"># testing</span><br><span class="line">/coverage</span><br><span class="line"># production</span><br><span class="line">/build</span><br><span class="line"># misc</span><br><span class="line">.DS_Store</span><br><span class="line">.env.local</span><br><span class="line">npm-debug.log*</span><br><span class="line">yarn-debug.log*</span><br></pre></td></tr></table></figure>
+<h3 id="设置git身份信息"><a class="markdownIt-Anchor" href="#设置git身份信息"></a> 设置git身份信息</h3>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git config --global user.name <span class="string">"你的用户名"</span></span><br><span class="line">git config --global user.email <span class="string">"你的邮箱"</span></span><br></pre></td></tr></table></figure>
+<h3 id="密码和凭证"><a class="markdownIt-Anchor" href="#密码和凭证"></a> 密码和凭证</h3>
+<h4 id="保存-github-用户名和密码"><a class="markdownIt-Anchor" href="#保存-github-用户名和密码"></a> 保存 Github 用户名和密码</h4>
+<p>Mac 下面每次 <code>push</code>  都要询问用户名和密码，很麻烦。而且将来不利于用脚本控制部署。有个解决的办法：进入项目根目录，执行一下命令</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config --global credential.helper store</span><br></pre></td></tr></table></figure>
+<p>然后推送一次，输入账号和密码后，第二次推送就不需要了!</p>
+<h4 id="ssh-key-凭证"><a class="markdownIt-Anchor" href="#ssh-key-凭证"></a> SSH Key 凭证</h4>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 加入 SSH Agent</span></span><br><span class="line">ssh-agent -s</span><br></pre></td></tr></table></figure>
+<p>如果出现类似<code>Agent pid XXXX</code>这样的字样，则跳过下一步，否则输入：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">eval</span> `ssh-agent -s`</span><br></pre></td></tr></table></figure>
+<p>直到出现<code>Agent pid XXXX</code>这样的提示之后，输入：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-add ~/.ssh/id_rsa</span><br></pre></td></tr></table></figure>
+<p>这样，你成功的在本地生成了一个可用的SSH key。</p>
+<p>下面将这个key添加到github网站。 打开https://github.com/settings/ssh，点击<code>Add SSH Key</code>，复制<code>id_rsa.pub</code>中的所有内容到<code>Key</code>框中，在<code>Title</code>框中输入方便自己记忆的名字（建议输入能让自己明白是哪台电脑的名字，方便以后管理）。 当网页显示添加成功后，就已经完成了全部的操作。 下面进行一些测试，同样是打开Git Bash，输入：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -T git@github.com</span><br></pre></td></tr></table></figure>
+<p>bash中会显示如下字样：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">The authenticity of host &apos;github.com (207.97.227.239)&apos; can&apos;t be established.</span><br><span class="line">RSA key fingerprint is 16:27:ac:a5:76:28:2d:36:63:1b:56:4d:eb:df:a6:48.</span><br><span class="line">Are you sure you want to continue connecting (yes/no)?</span><br></pre></td></tr></table></figure>
+<p>输入yes之后，计算机会自动将<code>github.com</code>列入已知的host，然后会出现如下提示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Hi username! You&apos;ve successfully authenticated, but GitHub does not</span><br><span class="line">provide shell access.</span><br></pre></td></tr></table></figure>
+<p>如果成功看见，说明你已经配置好了，快去享受爽快的hexo一键部署吧； 如果出现任何错误提示，请仔细检查自己的操作，或者将错误信息发给我。</p>
+<p><a href="%5Bhttps://gavinlee1.github.io/2017/02/25/%E5%8D%81%E6%AD%A5%E4%B9%8B%E5%86%85%E8%BD%BB%E6%9D%BE%E6%90%9E%E5%AE%9A-Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/%5D(https://gavinlee1.github.io/2017/02/25/%E5%8D%81%E6%AD%A5%E4%B9%8B%E5%86%85%E8%BD%BB%E6%9D%BE%E6%90%9E%E5%AE%9A-Hexo-GitHub%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/)">参阅：十步轻松搞定Hexo</a></p>
+<p>如果要多台电脑共同使用同一个SSH-Key，先在第二台电脑上用这个key的相同邮件生成一个新的key</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa -b 4096 -C &quot;username@gmail.com&quot;</span><br></pre></td></tr></table></figure>
+<p>用第一台电脑上的两个key文件 <code>id_rsa, id_rsa.pub</code> 覆盖第二台电脑的文件（<em>注意备份</em>）。确保NEW上的两个文件的权限是正确的，id_rsa是600，id_rsa.pub是644，比如：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">-rw------- 1 fancy fancy 1675 2013-03-19 12:55 id_rsa</span><br><span class="line">-rw-r--r-- 1 fancy fancy 406 2013-03-19 12:55 id_rsa.pub</span><br><span class="line"><span class="comment"># 查看权限命令是 </span></span><br><span class="line">ls -l</span><br><span class="line"><span class="comment"># 更改权限命令是</span></span><br><span class="line">chmod 600 ~/.ssh/id_rsa</span><br><span class="line">chmod 644 ~/.ssh/id_rsa.pub</span><br></pre></td></tr></table></figure>
+<h3 id="删除仓库"><a class="markdownIt-Anchor" href="#删除仓库"></a> 删除仓库</h3>
+<ol>
+<li>点开仓库</li>
+<li>点击右上角的 <code>Settings</code></li>
+<li>滚动到最下面 <code>Done Zone</code>， 选择 <code>Delete this repository</code>。</li>
+</ol>
+<h3 id="恢复所有修改"><a class="markdownIt-Anchor" href="#恢复所有修改"></a> 恢复所有修改</h3>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">git checkout . <span class="comment">#本地所有修改的。没有的提交的，都返回到原来的状态</span></span><br><span class="line">git stash <span class="comment">#把所有没有提交的修改暂存到stash里面。可用git stash pop回复。</span></span><br><span class="line">git reset --hard HASH <span class="comment">#返回到HASH点，不保留修改。</span></span><br><span class="line">git reset --soft HASH <span class="comment">#同上，保留修改。HASH 是节点号，z.B. 7d593c5</span></span><br><span class="line"></span><br><span class="line">git clean -df <span class="comment">#返回到某个节点</span></span><br><span class="line">git clean 参数</span><br><span class="line">    -n 显示 将要 删除的 文件 和  目录</span><br><span class="line">    -f 删除 文件</span><br><span class="line">    -df 删除 文件 和 目录</span><br><span class="line">--------------------- </span><br><span class="line">git describe --always <span class="comment"># 查看当前节点号</span></span><br><span class="line">git <span class="built_in">log</span> <span class="comment"># 查看所有HEAD号和Commit描述</span></span><br></pre></td></tr></table></figure>
+<p>更加暴力的方式是</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">it checkout . &amp;&amp; git clean -xdf</span><br></pre></td></tr></table></figure>
+<h4 id="清除历史记录"><a class="markdownIt-Anchor" href="#清除历史记录"></a> 清除历史记录</h4>
+<div><div class="fold_hider"><div class="close hider_title">代码</div></div><div class="fold">
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">1. Checkout</span><br><span class="line">   git checkout --orphan latest_branch</span><br><span class="line"></span><br><span class="line">2. Add all the files</span><br><span class="line">   git add -A</span><br><span class="line"></span><br><span class="line">3. Commit the changes</span><br><span class="line">   git commit -am &quot;commit message&quot;</span><br><span class="line"></span><br><span class="line">4. Delete the branch</span><br><span class="line">   git branch -D master</span><br><span class="line"></span><br><span class="line">5. Rename the current branch to master</span><br><span class="line">   git branch -m master</span><br><span class="line"></span><br><span class="line">6. Finally, force update your repository</span><br><span class="line"></span><br><span class="line">   git push -f origin master</span><br></pre></td></tr></table></figure>
+
+</div></div>
+<h3 id="私人仓库"><a class="markdownIt-Anchor" href="#私人仓库"></a> 私人仓库</h3>
+<p>作为个人笔记，不应该设为public，这样别人可以浏览。<mark>2019</mark> 年Github更新了<a href="https://www.infoq.cn/article/aKm94Aw1RmDL_9Gysm8D" target="_blank" rel="noopener">新的政策</a>：</p>
+<blockquote>
+<p>GitHub Free：包含无限制的私人存储库。有了 GitHub Free，开发人员可以将 GitHub 用于私有项目，每个存储库最多可以有三个协作者。许多开发人员希望使用私人仓库申请工作，做一些 side project，或者在公开发布之前先私下尝试一些东西。从今天开始，这些场景在 GitHub 上可以免费实现（未来可能有更多场景）。 公共存储库仍然是免费的，并包括无限合作者。</p>
+</blockquote>
+<ol>
+<li>点开仓库</li>
+<li>点击右上角的 <code>Settings</code></li>
+<li>滚动到最下面 <code>Done Zone</code>， 选择 <code>Make this repository private</code>。</li>
+</ol>
+<h2 id="文摘资源"><a class="markdownIt-Anchor" href="#文摘资源"></a> 文摘资源</h2>
+<p><a href="https://www.jianshu.com/p/9000cd49822c" target="_blank" rel="noopener">Git submodule 子模块的管理和使用</a></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/about-jianguoyu.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    坚果云有关
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/next-collapse-block.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">Next以及wikitten主题添加内容折叠</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+        <section id="comments"> 
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+ </section>
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            鎏金天涯 &copy; 2019
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> 万法唯心 | 相随心转
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://maiernte.github.io/wiki/use-github-in-wiki.html';
+        
+        this.page.identifier = 'IT/Tools/使用Github维护知识库';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'tian-ya-de-zhi-fu' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+    
+        <script src="/wiki/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/wiki/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/wiki/js/main.js"></script>
+
+    </div>
+</body>
+</html>
