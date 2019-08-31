@@ -199,7 +199,7 @@
                             &nbsp;
                             skill
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/still-using-qiniu.html">还在用七牛?</a></li>  <li class="file"><a href="/wiki/TypeScript-build-JS-Package.html">用TypeScript编写JS函数库</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/still-using-qiniu.html">还在用七牛?</a></li>  <li class="file"><a href="/wiki/TypeScript-build-JS-Package.html">用TypeScript编写JS函数库</a></li>  <li class="file"><a href="/wiki/mathjax-yixue-usage.html">MathJax用于易学领域</a></li>  </ul> 
                     </li> 
                      </ul> 
                     </li> 
@@ -737,8 +737,38 @@
         for (var i = 0; i < all.length; ++i)
             all[i].SourceElement().parentNode.className += ' has-jax';
     });
+    MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () { 
+        MathJax.InputJax.TeX.prefilterHooks.Add(function (data) {  
+          var pattern = /^(\\[a-zA-Z0-9]+)\{/
+          var macro = data.math.match(pattern)
+          var key = macro ? macro[1] : ""
+          var func = dictYiXue[key]
+          if(func){
+            data.math = func(data.math)
+          }
+        }); 
+      }); 
 </script>
+<script src="https://unpkg.com/mathjs@6.1.0/dist/math.min.js"></script>
 <script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script type= text/javascript src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+<script> 
+    var dictYiXue = {}
+    
+    var settingYixue = {
+        "字体大小": 5, // 字体大小 1~9 数字越大字体越大
+        "水土共长生": true, // 是否水土共长生
+        "华鹤八字正偏财": true,  // 是否使用华鹤偏财
+        "开启短名": false // 是否使用短名，如“偏财”->“才”
+    }
+
+    var mathsele = document.getElementsByClassName("katex-block")
+    for(var i= 0;i < mathsele.length; i++){
+        var dom  = mathsele[i]
+        var tmp = dom.innerText
+        dom.innerText = `\$${tmp}\$`
+    }
+</script>
     
 
 

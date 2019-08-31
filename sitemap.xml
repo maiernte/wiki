@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://maiernte.github.io/wiki/mathjax-yixue-usage.html</loc>
+    
+    <lastmod>2019-08-31T18:48:28.832Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maiernte.github.io/wiki/TypeScript-build-JS-Package.html</loc>
     
-    <lastmod>2019-08-24T09:32:50.413Z</lastmod>
+    <lastmod>2019-08-24T11:30:40.940Z</lastmod>
     
   </url>
   
@@ -156,6 +163,20 @@
   </url>
   
   <url>
+    <loc>http://maiernte.github.io/wiki/prominaent-slogen-collection.html</loc>
+    
+    <lastmod>2019-07-31T03:51:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://maiernte.github.io/wiki/funny-things-collection.html</loc>
+    
+    <lastmod>2019-07-31T03:51:35.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://maiernte.github.io/wiki/funny-things-collection.html</loc>
     
     <lastmod>2019-07-31T03:51:35.000Z</lastmod>
@@ -170,20 +191,6 @@
   </url>
   
   <url>
-    <loc>http://maiernte.github.io/wiki/brief-notions-collection.html</loc>
-    
-    <lastmod>2019-07-31T03:51:35.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://maiernte.github.io/wiki/funny-things-collection.html</loc>
-    
-    <lastmod>2019-07-31T03:51:35.000Z</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>http://maiernte.github.io/wiki/hellow-world.html</loc>
     
     <lastmod>2019-07-31T03:51:35.000Z</lastmod>
@@ -191,7 +198,7 @@
   </url>
   
   <url>
-    <loc>http://maiernte.github.io/wiki/prominaent-slogen-collection.html</loc>
+    <loc>http://maiernte.github.io/wiki/brief-notions-collection.html</loc>
     
     <lastmod>2019-07-31T03:51:35.000Z</lastmod>
     
