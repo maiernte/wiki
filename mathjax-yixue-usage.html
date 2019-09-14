@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="天涯的维基">
 <meta property="og:description" content="关于利用 MathJax 和 Katex 数学公式解释器，实现易学上排六爻盘和八字盘个功能。今天实现了易学上的核心功能。有望将来能添加更多的函数，以便利各位同门以及广大易友。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-09-01T16:01:01.917Z">
+<meta property="og:updated_time" content="2019-09-02T06:39:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="MathJax用于易学领域">
 <meta name="twitter:description" content="关于利用 MathJax 和 Katex 数学公式解释器，实现易学上排六爻盘和八字盘个功能。今天实现了易学上的核心功能。有望将来能添加更多的函数，以便利各位同门以及广大易友。">
@@ -168,6 +168,15 @@
                             IT
                         </a>
                          <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Code
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/javascript-typescript-skills.html">JavaScript & Typescript技术摘要</a></li>  </ul> 
+                    </li> 
+                    
                     <li class="directory">
                         <a href="#" data-role="directory">
                             <i class="fa fa-folder"></i>
@@ -432,10 +441,10 @@
 <p>✏️ 因为下一章要介绍在 Typora 编辑器中如何使用，而 Typora 只支持 MathJax 渲染，所以目前只实现了MathJax 的方式。喜欢用 <code>Katex</code> 的朋友，则需要在 <code>Katex</code> 的自动渲染函数中匹配。以后有时间再贴出来具体的实现办法。但原理是不变的，有心的朋友可以自己摸索。据说 Katex 的渲染速度比 MathJax 要快很多，而我中意的 Typora 只支持 MathJax ，只好用 MathJax 方式。</p>
 <h6 id="代码二"><a class="markdownIt-Anchor" href="#代码二"></a> 代码二</h6>
 <p><a name="code2">易学函数库用户设定</a> （简称：代码二）</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script type= text/javascript src=<span class="string">"https://raw.githack.com/maiernte/img/master/libs/bundle.js"</span>&gt;<span class="xml"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span></span><br><span class="line">&lt;script&gt; </span><br><span class="line">  <span class="keyword">var</span> dictYiXue = &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> settingYixue = &#123;</span><br><span class="line">    <span class="string">"字体大小"</span>: <span class="number">5</span>, <span class="comment">// 字体大小 1~9 数字越大字体越大</span></span><br><span class="line">    <span class="string">"水土共长生"</span>: <span class="literal">true</span>, <span class="comment">// 是否水土共长生</span></span><br><span class="line">    <span class="string">"华鹤八字正偏财"</span>: <span class="literal">true</span>,  <span class="comment">// 是否使用华鹤偏财</span></span><br><span class="line">    <span class="string">"开启短名"</span>: <span class="literal">false</span> <span class="comment">// 是否使用短名，如“偏财”-&gt;“才”</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">&lt;script&gt; </span><br><span class="line">  <span class="keyword">var</span> dictYiXue = &#123;&#125;</span><br><span class="line">  <span class="keyword">var</span> settingYixue = &#123;</span><br><span class="line">    <span class="string">"字体大小"</span>: <span class="number">5</span>, <span class="comment">// 字体大小 1~9 数字越大字体越大</span></span><br><span class="line">    <span class="string">"水土共长生"</span>: <span class="literal">true</span>, <span class="comment">// 是否水土共长生</span></span><br><span class="line">    <span class="string">"华鹤八字正偏财"</span>: <span class="literal">true</span>,  <span class="comment">// 是否使用华鹤偏财</span></span><br><span class="line">    <span class="string">"开启短名"</span>: <span class="literal">false</span>, <span class="comment">// 是否使用短名，如“偏财”-&gt;“才”</span></span><br><span class="line">    <span class="string">"Katex"</span>: <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
 <h6 id="脚本文件三"><a class="markdownIt-Anchor" href="#脚本文件三"></a> 脚本文件三</h6>
 <p><a name="code3">MathJax库的易学扩展脚本</a> (简称：脚本三)</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>= <span class="string">text/javascript</span> <span class="attr">src</span>=<span class="string">"https://rawcdn.githack.com/maiernte/img/11a1bb572a6875dbf434a7fc457ea2fdd329f7db/libs/bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>= <span class="string">text/javascript</span> <span class="attr">src</span>=<span class="string">"https://rawcdn.githack.com/maiernte/img/bd9422810b8019db78b9e5d1b741032851f3b0e8/libs/bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>脚本文件托管在我的 Github 代码仓库上，上面 src 中就是具体的地址。国外的用户访问非常流畅，国内用户可能时间有点长。</p>
 <ul>
 <li>解决办法一：申请国内的云码仓库<a href="https://gitee.com" target="_blank" rel="noopener">Gitee</a>，将我的脚本文件托管到那上边。（托管代码都是免费的）</li>
@@ -455,7 +464,7 @@
 <li>随便用一个文件编辑器打开上述 <em>window.html</em> 或者 <em>index.html</em> 文件，找到 <code>MathJax.Hub.Config</code> 代码段，并在其下面加入 <a href="#code1">代码一</a> 脚本代码。</li>
 <li>找到<strong>MathJax.js</strong>的脚本引用，在其下面添加 <a href="#code3">脚本三</a> 和 <a href="#code2">代码二</a> 。大概如下：</li>
 </ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 找到这一段，每人具体路径不一样，只要出现 “.../MathJax.js?.....”，就是他了 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/mathjax/MathJax.js?config=TeX-MML-AM_CHTML"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- 开始添加易学脚本和用户设定 --&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>= <span class="string">text/javascript</span> <span class="attr">src</span>=<span class="string">"你的路径/bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span> </span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> dictYiXue = &#123;&#125;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> settingYixue = &#123;</span></span><br><span class="line">		。。。</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 找到这一段，每人具体路径不一样，只要出现 “.../MathJax.js?.....”，就是他了 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">"https://unpkg.com/mathjax/MathJax.js?config=TeX-MML-AM_CHTML"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span> </span><br><span class="line"><span class="comment">&lt;!-- 开始添加易学脚本和用户设定 --&gt;</span>  </span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span> </span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> dictYiXue = &#123;&#125;</span></span><br><span class="line"><span class="actionscript">  <span class="keyword">var</span> settingYixue = &#123;</span></span><br><span class="line">		。。。</span><br><span class="line">  &#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>= <span class="string">text/javascript</span> <span class="attr">src</span>=<span class="string">"你的路径/bundle.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h5 id="hexo博客"><a class="markdownIt-Anchor" href="#hexo博客"></a> Hexo博客</h5>
 <h6 id="next-主题"><a class="markdownIt-Anchor" href="#next-主题"></a> next 主题</h6>
 <ol>
@@ -512,7 +521,7 @@
 <li>「简排」：只允许<code>s</code> 和 <code>l</code>两个英文字符的其中一个。<code>s</code> 表示只显示短名，如“妻财”显示为“财”，“青龙”显示为“龙”。<code>l</code> 则显示完整名称。留白则按照用户全局设定来显示。（参阅<a href="#code2">用户设定</a>）</li>
 <li>「字符大小」：允许 0 - 9 档。数字越大文字越大。默认大小为<code>5</code>或者用户的<a href="#code2">全局设定</a>。</li>
 </ul>
-<p>例子5： <code>$$\paigua{1978年7月1日}{101201}{gua1}$$</code> 效果</p>
+<p>例子5： <code>$\paigua{1978年7月1日}{101201}{gua1}$</code> 效果</p>
 <p class="katex-block katex-error" title="ParseError: KaTeX parse error: Undefined control sequence: \paigua at position 1: \̲p̲a̲i̲g̲u̲a̲{1978年7月1日}{101…">\paigua{1978年7月1日}{101201}{gua1}
 </p>
 <p>✏️ 如果文章很长，需要在指定位置重新显示一遍卦本，则可以使用重排命令。即让【时令】和【卦辞】两个参数留白，只给出【ID号】。如 <code>\paigua{}{}{gua1}</code> 。留白的参数，仍然需要用大括号括起来，否则解释器会出错。</p>
@@ -582,6 +591,15 @@
 
     
 <nav id="article-nav">
+    
+        <a href="/wiki/javascript-typescript-skills.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    JavaScript &amp; Typescript技术摘要
+                
+            </div>
+        </a>
     
     
         <a href="/wiki/TypeScript-build-JS-Package.html" id="article-nav-older" class="article-nav-link-wrap">
