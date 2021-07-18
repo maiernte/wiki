@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    
+    <title>Next以及wikitten主题添加内容折叠 | 天涯的维基</title>
+    
+    
+        <meta name="keywords" content="Hexo">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="添加代码 当有大段的代码直接展示在页面时，看起来臃肿且不便于观看，此时将代码折叠式最好的选择。下面是在Hexo的Next主题上添加折叠功能。">
+<meta name="keywords" content="Hexo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Next以及wikitten主题添加内容折叠">
+<meta property="og:url" content="http://maiernte.github.io/wiki/next-collapse-block.html">
+<meta property="og:site_name" content="天涯的维基">
+<meta property="og:description" content="添加代码 当有大段的代码直接展示在页面时，看起来臃肿且不便于观看，此时将代码折叠式最好的选择。下面是在Hexo的Next主题上添加折叠功能。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-07-31T03:51:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Next以及wikitten主题添加内容折叠">
+<meta name="twitter:description" content="添加代码 当有大段的代码直接展示在页面时，看起来臃肿且不便于观看，此时将代码折叠式最好的选择。下面是在Hexo的Next主题上添加折叠功能。">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="天涯的维基" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/wiki/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/wiki/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/wiki/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/wiki/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/wiki/css/style.css">
+    <script src="/wiki/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/wiki/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/wiki/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/wiki/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+</head>
+</html>
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.css" >
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/katex.min.js" ></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.11.0/dist/contrib/auto-render.min.js"></script>
+</head>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/wiki/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">天涯的维基</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/wiki/">首页</a>
+                
+                    <a class="main-nav-link" href="/wiki/archives/">归档</a>
+                
+                    <a class="main-nav-link" href="/wiki/categories/">分类</a>
+                
+                    <a class="main-nav-link" href="/wiki/tags/">标签</a>
+                
+                    <a class="main-nav-link" href="/wiki/about/">关于</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/wiki/',
+        CONTENT_URL: '/wiki/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/wiki/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/wiki/">首页</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/archives/">归档</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/categories/">分类</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/tags/">标签</a></td>
+                
+                    <td><a class="main-nav-link" href="/wiki/about/">关于</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            IT
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Code
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/javascript-typescript-skills.html">JavaScript & Typescript技术摘要</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mac
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/mac-memo.html">Mac备忘录</a></li>  <li class="file"><a href="/wiki/mac-using-tags.html">Mac使用标签</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Tools
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/use-github-in-wiki.html">使用Github维护知识库</a></li>  <li class="file"><a href="/wiki/about-jianguoyu.html">坚果云有关</a></li>  <li class="file"><a href="/wiki/ubuntu-reset-root-pw.html">Ubuntu重设root用户密码</a></li>  <li class="file"><a href="/wiki/Editor-Skills-Summary.html">编辑器工具使用技巧汇总</a></li>  <li class="file"><a href="/wiki/helpfull-shell-command.html">有用的Shell命令</a></li>  <li class="file"><a href="/wiki/config-mysql-access-privileges-on-vps.html">配置服务器端MySQL</a></li>  <li class="file"><a href="/wiki/gitbook_with_typora_gh-pages.html">Gitbook攻略</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Web
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file active"><a href="/wiki/next-collapse-block.html">Next以及wikitten主题添加内容折叠</a></li>  <li class="file"><a href="/wiki/how-build-my-hexo-blog.html">搭建Hexo博客的流水账</a></li>  <li class="file"><a href="/wiki/how-to-manage-big-hexo-blog.html">如何系统化管理Hexo博客</a></li>  <li class="file"><a href="/wiki/synchron-the-tag-and-categories-btw-pc-hexo.html">同步Hexo文章与Mac上原笔记的分类和标签</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            skill
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/still-using-qiniu.html">还在用七牛?</a></li>  <li class="file"><a href="/wiki/TypeScript-build-JS-Package.html">用TypeScript编写JS函数库</a></li>  <li class="file"><a href="/wiki/mathjax-yixue-usage.html">MathJax用于易学领域</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            常用文件
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/hexo-blog-alltag-verwalten.html">Hexo日常管理</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            摘录
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            娱乐
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/funny-things-collection.html">搞笑段子</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            片段
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/prominaent-slogen-collection.html">名人语录</a></li>  <li class="file"><a href="/wiki/funny-things-collection.html">缠中说禅</a></li>  <li class="file"><a href="/wiki/funny-sloga-collection.html">零散句子</a></li>  <li class="file"><a href="/wiki/brief-notions-collection.html">简短书摘</a></li>  <li class="file"><a href="/wiki/budahlisisch-poeim-collection.html">佛偈集合</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/lalaland-film.html">爱乐之城——影评</a></li>  <li class="file"><a href="/wiki/lvdeshui-film.html">《驴得水》——影评</a></li>  <li class="file"><a href="/wiki/old-stories-collection.html">典故</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            文档
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/rzf-organisation.html">RZF Organisation</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            读书笔记
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/road-less-traveled-summary.html">《少有人走的路》笔记</a></li>  <li class="file"><a href="/wiki/road-to-asset-freedom.html">财富自由之路-李笑来</a></li>  <li class="file"><a href="/wiki/storic-summary.html">斯多葛主义手册</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            随笔
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/hellow-world.html">Hello World</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-IT/Web/Next主题添加内容折叠" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/wiki/categories/IT/">IT</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/wiki/categories/IT/Web/">Web</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/wiki/tags/Hexo/">Hexo</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/next-collapse-block.html">
+            <time datetime="2019-07-23T18:29:33.000Z" itemprop="datePublished">2019-07-23</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a href='https://github.com/maiernte/maiernte.github.io.source/raw/master/source/_posts/IT/Web/Next主题添加内容折叠.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/maiernte/maiernte.github.io.source/edit/master/source/_posts/IT/Web/Next主题添加内容折叠.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a href='https://github.com/maiernte/maiernte.github.io.source/commits/master/source/_posts/IT/Web/Next主题添加内容折叠.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Next以及wikitten主题添加内容折叠
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">1.</span> <span class="toc-text">添加代码</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#在main-js中添加折叠js"><span class="toc-number">1.1.</span> <span class="toc-text">在main.js中添加折叠js</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义内建标签"><span class="toc-number">1.2.</span> <span class="toc-text">自定义内建标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#添加自定义样式"><span class="toc-number">1.3.</span> <span class="toc-text">添加自定义样式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-number">1.4.</span> <span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-number">1.5.</span> <span class="toc-text">参考</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#null"><span class="toc-number">2.</span> <span class="toc-text">实例</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#嵌套代码"><span class="toc-number">2.1.</span> <span class="toc-text">嵌套代码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hexo-代码方式"><span class="toc-number">2.2.</span> <span class="toc-text">Hexo 代码方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gist"><span class="toc-number">2.3.</span> <span class="toc-text">Gist</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Hexo-方式"><span class="toc-number">2.3.1.</span> <span class="toc-text">Hexo 方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Javascript-方式"><span class="toc-number">2.3.2.</span> <span class="toc-text">Javascript 方式</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h1>添加代码</h1>
+<p>当有大段的代码直接展示在页面时，看起来臃肿且不便于观看，此时将代码折叠式最好的选择。下面是在Hexo的Next主题上添加折叠功能。</p>
+<a id="more"></a>
+<h2 id="在main-js中添加折叠js">在main.js中添加折叠js</h2>
+<p>Next主题的主要js位于 <code>themes/next/source/js/src/post-details.js</code>,在下面添加一下代码段：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="built_in">document</span>).ready(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    $(<span class="built_in">document</span>).on(<span class="string">'click'</span>, <span class="string">'.fold_hider'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        $(<span class="string">'&gt;.fold'</span>, <span class="keyword">this</span>.parentNode).slideToggle();</span><br><span class="line">        $(<span class="string">'&gt;:first'</span>, <span class="keyword">this</span>).toggleClass(<span class="string">'open'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">    <span class="comment">//默认情况下折叠</span></span><br><span class="line">    $(<span class="string">"div.fold"</span>).css(<span class="string">"display"</span>,<span class="string">"none"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>Wikitten 主题添加到 <code>themes/wikitten/source/js/main.js</code> 后面。</p>
+<h2 id="自定义内建标签">自定义内建标签</h2>
+<p>在主题scripts下添加一个tags.js，位于<code>themes/next/scripts/tags.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">  @haohuawu</span></span><br><span class="line"><span class="comment">  修复 Nunjucks 的 tag 里写 ```代码块```，最终都会渲染成 undefined 的问题</span></span><br><span class="line"><span class="comment">  https://github.com/hexojs/hexo/issues/2400</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">const</span> rEscapeContent = <span class="regexp">/&lt;escape(?:[^&gt;]*)&gt;([\s\S]*?)&lt;\/escape&gt;/g</span>;</span><br><span class="line"><span class="keyword">const</span> placeholder = <span class="string">'\uFFFD'</span>;</span><br><span class="line"><span class="keyword">const</span> rPlaceholder = <span class="regexp">/(?:&lt;|&amp;lt;)\!--\uFFFD(\d+)--(?:&gt;|&amp;gt;)/g</span>;</span><br><span class="line"><span class="keyword">const</span> cache = [];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">escapeContent</span>(<span class="params">str</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">'&lt;!--'</span> + placeholder + (cache.push(str) - <span class="number">1</span>) + <span class="string">'--&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line">hexo.extend.filter.register(<span class="string">'before_post_render'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  data.content = data.content.replace(rEscapeContent, <span class="function"><span class="keyword">function</span>(<span class="params">match, content</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> escapeContent(content);</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;);</span><br><span class="line">hexo.extend.filter.register(<span class="string">'after_post_render'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">  data.content = data.content.replace(rPlaceholder, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> cache[<span class="built_in">arguments</span>[<span class="number">1</span>]];</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">return</span> data;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>再继续添加一个fold.js,位于<code>themes/next/scripts/fold.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* global hexo */</span></span><br><span class="line"><span class="comment">// Usage: &#123;% fold ???? %&#125; Something &#123;% endfold %&#125;</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fold</span> (<span class="params">args, content</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> text = args[<span class="number">0</span>];</span><br><span class="line">    <span class="keyword">if</span>(!text) text = <span class="string">"点击显/隐"</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'&lt;div&gt;&lt;div class="fold_hider"&gt;&lt;div class="close hider_title"&gt;'</span> + text + <span class="string">'&lt;/div&gt;&lt;/div&gt;&lt;div class="fold"&gt;\n'</span> + hexo.render.renderSync(&#123;<span class="attr">text</span>: content, <span class="attr">engine</span>: <span class="string">'markdown'</span>&#125;) + <span class="string">'\n&lt;/div&gt;&lt;/div&gt;'</span>;</span><br><span class="line">&#125;</span><br><span class="line">hexo.extend.tag.register(<span class="string">'fold'</span>, fold, &#123;<span class="attr">ends</span>: <span class="literal">true</span>&#125;);</span><br></pre></td></tr></table></figure>
+<p>wikitten主题将这两个文件复制到 <code>themes/wikitten/scripts</code> 目录下。</p>
+<h2 id="添加自定义样式">添加自定义样式</h2>
+<p>位于<code>themes/next/source/css/_custom/custom.styl</code></p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.hider_title</span>&#123;</span><br><span class="line">    <span class="attribute">font-family</span>: <span class="string">"Microsoft Yahei"</span>;</span><br><span class="line">    <span class="attribute">cursor</span>: pointer;</span><br><span class="line">    <span class="attribute">color</span>: red;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.close</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">"▼"</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.open</span><span class="selector-pseudo">:after</span>&#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">"▲"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>wikitten 主题将此代码添加到 <code>themes/wikitten/source/css/_partial/article.styl</code> 文件下面。在<code>next</code> 主题必须将==color: red==去掉，否则会影响大纲栏的颜色。</p>
+<h2 id="使用">使用</h2>
+<p>在我们需要折叠的地方前后添加便签，示例用法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;% fold 点击显/隐内容 %&#125;</span><br><span class="line">需要隐藏的内容。。。</span><br><span class="line">&#123;% endfold %&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="参考">参考</h2>
+<p><a href="https://blog.rmiao.top/hexo-fold-block/" target="_blank" rel="noopener">Hexo next博客添加折叠块功能添加折叠代码块</a><br>
+<a href="http://zlingfly.com/2018/09/05/fold-test/" target="_blank" rel="noopener">Next主题实现内容折叠</a><br>
+<a href="https://www.oyohyee.com/post/Note/fold/" target="_blank" rel="noopener">jQuery 实现内容折叠功能</a></p>
+<p><a href="https://hexo.io/zh-cn/docs/tag-plugins.html" target="_blank" rel="noopener">Hexo 标签插件 官方</a></p>
+<h1>实例</h1>
+<h2 id="嵌套代码">嵌套代码</h2>
+<p>Some Content</p>
+<div><div class="fold_hider"><div class="close hider_title">点击显/隐内容</div></div><div class="fold">
+<blockquote><p>&lt;xsl:call-template name=“SetGlobaleVariable”&gt;<br>
+&lt;xsl:with-param name=“name-variable”&gt;po_bfa_swbh_laufbahn&lt;/xsl:with-param&gt;<br>
+&lt;xsl:with-param name=“wert-variable” select=&quot;$bf_laufbahnzulage&quot;/&gt;<br>
+&lt;/xsl:call-template&gt;</p>
+<footer><strong>Mai, Düsseldorf link</strong><cite><a href="http://google.de" target="_blank" rel="noopener">google.de</a></cite></footer></blockquote>
+</div></div>
+<h2 id="Hexo-代码方式">Hexo 代码方式</h2>
+<blockquote><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque hendrerit lacus ut purus iaculis feugiat. Sed nec tempor elit, quis aliquam neque. Curabitur sed diam eget dolor fermentum semper at eu lorem.</p>
+<footer><strong>David</strong><cite>Levithan</cite></footer></blockquote>
+<figure class="highlight plain"><figcaption><span>KOS xsl</span><a href="http://google.de" target="_blank" rel="noopener">downloadcode</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 code snippet</span><br></pre></td></tr></table></figure>
+<h2 id="Gist">Gist</h2>
+<h3 id="Hexo-方式">Hexo 方式</h3>
+<p>Gist (“48edcb5cfd92937ae61360b74852d4e1” 就是id。 而 “xml” 是我创建时的文件名)。地址是 <a href="http://git.github.com" target="_blank" rel="noopener">git.github.com</a></p>
+<script src="//gist.github.com/48edcb5cfd92937ae61360b74852d4e1.js?file=xml"></script>
+<br>
+<h3 id="Javascript-方式">Javascript 方式</h3>
+<script src="https://gist.github.com/maiernte/48edcb5cfd92937ae61360b74852d4e1.js"></script>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/use-github-in-wiki.html" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">上一篇</strong>
+            <div class="article-nav-title">
+                
+                    使用Github维护知识库
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/rzf-organisation.html" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">下一篇</strong>
+            <div class="article-nav-title">RZF Organisation</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+        <section id="comments"> 
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+ </section>
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            鎏金天涯 &copy; 2020
+            <a rel="license" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <br> 万法唯心 | 相随心转
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+    
+    <script>
+    var disqus_config = function () {
+        
+            this.page.url = 'http://maiernte.github.io/wiki/next-collapse-block.html';
+        
+        this.page.identifier = 'IT/Web/Next主题添加内容折叠';
+    };
+    (function() { 
+        var d = document, s = d.createElement('script');  
+        s.src = '//' + 'tian-ya-de-zhi-fu' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+
+
+
+    
+        <script src="/wiki/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/wiki/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/wiki/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/wiki/js/main.js"></script>
+
+    </div>
+    
+    <script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js?华鹤=1&字体=5&水土=1&短名=1&katex=1"></script>  
+</body>
+</html>

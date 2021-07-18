@@ -1,0 +1,44 @@
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+    MathJax.Hub.Register.StartupHook("TeX Jax Ready",function () { 
+        MathJax.InputJax.TeX.prefilterHooks.Add(function (data) {  
+          var pattern = /^(\\[a-zA-Z0-9]+)\{/
+          var macro = data.math.match(pattern)
+          var key = macro ? macro[1] : ""
+          var func = dictYiXue[key]
+          if(func){
+            data.math = func(data.math)
+          }
+        }); 
+      }); 
+</script>
+<script src="https://unpkg.com/mathjs@6.1.0/dist/math.min.js"></script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!-- <script type= text/javascript src="https://rawcdn.githack.com/maiernte/img/bb3c42dc26b0866a142bb905d1753ac483e0a474/libs/bundle.js"></script> -->
+
+<script src="https://raw.githack.com/maiernte/img/master/libs/mathjaxYixue.js"></script>
+<script src="https://raw.githack.com/maiernte/img/master/libs/bundle.js"></script>
+<script> 
+    var matherr = document.getElementsByClassName("katex-error")
+    for(var i= 0;i < matherr.length; i++){
+        var dom  = matherr[i]
+        var tmp = dom.innerText
+        dom.innerText = `\$${tmp}\$`
+    }
+</script>
